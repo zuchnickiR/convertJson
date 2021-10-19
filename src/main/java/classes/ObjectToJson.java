@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Scanner;
 
 public class ObjectToJson {
 
@@ -68,23 +69,52 @@ b) dodaje do tego obiektu klucz i wartość
 
     public void createJsonFromPerson(Person per) {
 
-        String projectDirectory = pathsClasses.getProjectDirectory();
-        String desktopPath = pathsClasses.getDesktopPath();
 
+        String projectDirectory = pathsClasses.getProjectDirectory();
 
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("name", per.getName()); //Uwaga: klucze  MUSZĄ mieć taka samą nazwę co pola w Klasie Person, inaczej powstanie błąd!
-        jsonObject.put("age", per.getAge());
-        try {//    /home/rob/Desktop/zamowienie -bedzie zapisywało json na pulpicie
-//            FileWriter fileWriter = new FileWriter("zamowienie " + getCurrentTime() + ".json");
-            FileWriter fileWriter = new FileWriter(projectDirectory + "zamowienie " + getCurrentTime() + ".json");
-            fileWriter.write(jsonObject.toString());
-            fileWriter.flush();
-            fileWriter.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        //nazwa dla Zamówienia
+        String nazwaZamowienia = "zamowienie " + getCurrentTime();
+
+        //nazwa dla obiektu
+        String typeName = jsonObject.getClass().getSimpleName();
+        System.out.println("Type : " + typeName);
+
+
+        System.out.println("--------------------------------\n" +
+                "Do you want to save file?\n" +
+                "Name: " + nazwaZamowienia +"\n" +
+                "Type: " + typeName +"\n" +
+                "--------------------------------\n" +
+                "a) If yes enter 'y', then press enter\n" +
+                "b) If no enter any keyboard key, then press enter");
+
+        Scanner scanner = new Scanner(System.in);
+        String resultYn = scanner.nextLine();
+
+        if(resultYn.equals("Y") || resultYn.equals("y")) {
+
+            jsonObject.put("name", per.getName());  //Uwaga: klucze  MUSZĄ mieć taka samą nazwę co pola w Klasie Person, inaczej powstanie błąd!
+            jsonObject.put("age", per.getAge());    //Uwaga: klucze  MUSZĄ mieć taka samą nazwę co pola w Klasie Person, inaczej powstanie błąd!
+            try {
+                FileWriter fileWriter = new FileWriter(projectDirectory + nazwaZamowienia + ".json");
+                fileWriter.write(jsonObject.toString());
+                fileWriter.flush();
+                fileWriter.close();
+
+                System.out.println("File: '" + nazwaZamowienia + "' was successfully saved!\n" +
+                        "in path: " + projectDirectory);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+
+            System.out.println("Saving file aborted.");
         }
     }
+
 
     public void createJsonFromObjectUsingObjectMapper(Person person) {
         ObjectMapper objectMapper = new ObjectMapper();
