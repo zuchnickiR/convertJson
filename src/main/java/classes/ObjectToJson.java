@@ -142,7 +142,9 @@ b) dodaje do tego obiektu klucz i wartość
 //        }
 //    }
 
+    //https://stackoverflow.com/questions/15786129/converting-java-objects-to-json-with-jackson
     public void createJsonFromObjectUsingObjectMapper111(Object object) {
+
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
