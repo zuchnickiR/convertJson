@@ -26,16 +26,14 @@ public class Main {
 //            e.printStackTrace();
 //        }
 
-//        ObjectToJson objectToJson = new ObjectToJson();
-//        Person personAda = new Person("Ada", 28);
-//        objectToJson.createJsonFromPerson(personAda);
-//
-//        objectToJson.createJsonFromObjectUsingObjectMapper(personAda);
-//        objectToJson.createJsonFromObjectUsingObjectMapper(personAda);
+        ObjectToJson objectToJson = new ObjectToJson();
+        Person personAda = new Person("Ada", 28);
+
+        objectToJson.createJsonFromPerson(personAda);
+      //  objectToJson.createJsonFromObjectUsingObjectMapper(personAda);
 
 
-        TworzenieKatalogu tworzenieKatalogu = new TworzenieKatalogu();
-        tworzenieKatalogu.makeDirectory();
+
 
 
 

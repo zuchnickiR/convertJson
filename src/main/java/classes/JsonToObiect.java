@@ -5,8 +5,11 @@ package classes;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.*;
+import java.util.Scanner;
 
 public class JsonToObiect {
+
+    PathsClasses pathsClasses = new PathsClasses();
 
     // Mapping JSON to Java Obiect
 //jest to deserializacja danych z JSON do Java Obiect
@@ -16,8 +19,14 @@ public class JsonToObiect {
 
     public Person convertJSONFileToObiectUsingFile() {
 
+
+        System.out.println("Prosze wpisz nazwę pliku o rozszeżeniu JSON, który chcesz skonwertować do postaci Obiektu Java");
+        Scanner scanner = new Scanner(System.in);
+        String nazwa = scanner.nextLine();
+
+        String projectDirectory = pathsClasses.getProjectDirectory();
         ObjectMapper objectMapper = new ObjectMapper();
-        File file = new File("/home/rob/Desktop/taskRZ/zamowienie 16:58:25.json");
+        File file = new File(projectDirectory +nazwa);
 
         try {
             // file to źródło, a Person.class to typ wartości

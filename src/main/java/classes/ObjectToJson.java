@@ -14,7 +14,7 @@ import java.time.temporal.ChronoUnit;
 
 public class ObjectToJson {
 
-   // Person person = new Person("Ala", 20);
+    // Person person = new Person("Ala", 20);
 
 //FRAZY PODCZAS WYSZUKIWANIA TO:
 // a) Mapping Java Obiect to JSON obiect
@@ -45,9 +45,10 @@ a) tworzę obiekt typu JSON:
 b) dodaje do tego obiektu klucz i wartość
  */
 
+    PathsClasses pathsClasses = new PathsClasses();
 
 
-//do tworzenia daty i czasu
+    //do tworzenia daty i czasu
     public static String getCurrentDate() {
         LocalDate myObj = LocalDate.now();
         String dataString = myObj.toString();
@@ -66,11 +67,17 @@ b) dodaje do tego obiektu klucz i wartość
 
 
     public void createJsonFromPerson(Person per) {
+
+        String projectDirectory = pathsClasses.getProjectDirectory();
+        String desktopPath = pathsClasses.getDesktopPath();
+
+
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("name", per.getName()); //Uwaga: klucze  MUSZĄ mieć taka samą nazwę co pola w Klasie Person, inaczej powstanie błąd!
         jsonObject.put("age", per.getAge());
         try {//    /home/rob/Desktop/zamowienie -bedzie zapisywało json na pulpicie
-            FileWriter fileWriter = new FileWriter("zamowienie " + getCurrentTime() + ".json");
+//            FileWriter fileWriter = new FileWriter("zamowienie " + getCurrentTime() + ".json");
+            FileWriter fileWriter = new FileWriter(projectDirectory + "zamowienie " + getCurrentTime() + ".json");
             fileWriter.write(jsonObject.toString());
             fileWriter.flush();
             fileWriter.close();
@@ -83,7 +90,7 @@ b) dodaje do tego obiektu klucz i wartość
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             objectMapper.writeValue(
-                   new FileWriter(getCurrentDate() + " " + getCurrentTime() + " .json"), person);
+                    new FileWriter(getCurrentDate() + " " + getCurrentTime() + " .json"), person);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -98,12 +105,11 @@ b) dodaje do tego obiektu klucz i wartość
 
     public JSONObject createJsonUingObiect(Person person) {
         JSONObject jsonPerson = new JSONObject();
-       //tworzę tablicę
+        //tworzę tablicę
         JSONArray tabJsonArray = new JSONArray();
         tabJsonArray.add(person);
         return jsonPerson;
     }
-
 
 
 }
