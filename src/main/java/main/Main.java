@@ -29,7 +29,7 @@ public class Main {
         ObjectToJson objectToJson = new ObjectToJson();
         Person personAda = new Person("Ada", 28);
 
-        objectToJson.createJsonFromPerson(personAda);
+    //    objectToJson.createJsonFromPerson(personAda);
       //  objectToJson.createJsonFromObjectUsingObjectMapper(personAda);
 
 

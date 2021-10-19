@@ -1,5 +1,11 @@
 package classes;
+/*
+https://www.javatpoint.com/convert-java-object-to-json
+https://www.tabnine.com/blog/how-to-convert-a-java-object-into-a-json-string/
+https://devqa.io/convert-java-to-json/
+Create an universal java mapper for json string   https://stackoverflow.com/questions/50163451/create-an-universal-java-mapper-for-json-string
 
+ */
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
@@ -11,18 +17,20 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class ObjectToJson {
 
-    // Person person = new Person("Ala", 20);
 
+    // Person person = new Person("Ala", 20);
 //FRAZY PODCZAS WYSZUKIWANIA TO:
+
 // a) Mapping Java Obiect to JSON obiect
+
 // b) Convert Java Obiect to JSON
 
 // https://www.youtube.com/watch?v=QezmbE_RXpE&ab_channel=Randomcode
-
 /*
 1. Dodaj dependencję do Mavena w pom.xml, by to zrobić wpisuje w mvnrepository: json simple
 
@@ -45,11 +53,12 @@ W ciele metody:
 a) tworzę obiekt typu JSON:
 b) dodaje do tego obiektu klucz i wartość
  */
-
     PathsClasses pathsClasses = new PathsClasses();
 
-
     //do tworzenia daty i czasu
+    public ObjectToJson() {
+    }
+
     public static String getCurrentDate() {
         LocalDate myObj = LocalDate.now();
         String dataString = myObj.toString();
@@ -61,9 +70,6 @@ b) dodaje do tego obiektu klucz i wartość
         DateTimeFormatter dtf = DateTimeFormatter.ISO_LOCAL_TIME;
         String timeOK = now.truncatedTo(ChronoUnit.SECONDS).format(dtf);
         return timeOK;
-    }
-
-    public ObjectToJson() {
     }
 
 
@@ -116,15 +122,42 @@ b) dodaje do tego obiektu klucz i wartość
     }
 
 
-    public void createJsonFromObjectUsingObjectMapper(Person person) {
+
+
+
+
+
+
+
+
+
+//    public void createJsonFromObjectUsingObjectMapper(Person person) {
+//        ObjectMapper objectMapper = new ObjectMapper();
+//
+//        try {
+//            objectMapper.writeValue(
+//                    new FileWriter(getCurrentDate() + " " + getCurrentTime() + " .json"), person);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+    public void createJsonFromObjectUsingObjectMapper111(Object object) {
         ObjectMapper objectMapper = new ObjectMapper();
+
         try {
+            String valueAsString = objectMapper.writeValueAsString(object);
             objectMapper.writeValue(
-                    new FileWriter(getCurrentDate() + " " + getCurrentTime() + " .json"), person);
+                    new FileWriter(getCurrentDate() + " " + getCurrentTime() + " .json"), valueAsString);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
+
+
+
 
     public JSONObject createJsonUsingGet(Person person) {
         JSONObject jsonPerson = new JSONObject();

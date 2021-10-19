@@ -9,7 +9,9 @@ public class MainTest {
         Person person = new Person("Aleksander", 36);
         ObjectToJson objectToJson = new ObjectToJson();
 
-        objectToJson.createJsonFromPerson(person);
+        objectToJson.createJsonFromObjectUsingObjectMapper111(person);
+
+      //  objectToJson.createJsonFromPerson(person);
     }
 
 

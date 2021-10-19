@@ -12,14 +12,13 @@ public class JsonToObiect {
     PathsClasses pathsClasses = new PathsClasses();
 
     // Mapping JSON to Java Obiect
-//jest to deserializacja danych z JSON do Java Obiect
+    //jest to deserializacja danych z JSON do Java Obiect
     //Convert JSON Into Java Object
     //Read Object From JSON File   http://tutorials.jenkov.com/java-json/jackson-objectmapper.html#how-jackson-objectmapper-matches-json-fields-to-java-fields
 
 
+    //METODA 1 DOBRA
     public Person convertJSONFileToObiectUsingFile() {
-
-
         System.out.println("Prosze wpisz nazwę pliku o rozszeżeniu JSON, który chcesz skonwertować do postaci Obiektu Java");
         Scanner scanner = new Scanner(System.in);
         String nazwa = scanner.nextLine();
@@ -38,8 +37,9 @@ public class JsonToObiect {
         return null;
     }
 
-    public Person jSonToObiectUsingFileReader() {
 
+    //METODA 2 DOBRA
+    public Person jSonToObiectUsingFileReader() {
         ObjectMapper objectMapper = new ObjectMapper();
         try{
             FileReader fileReader = new FileReader("/home/rob/Desktop/taskRZ/zamowienie 16:58:25.json");
@@ -52,23 +52,6 @@ public class JsonToObiect {
         return null;
     }
 
-
-
-        public Person jsonToObiectInputStream() {
-        // coś nie działa !!!!!!!!!!!!!!!//
-        // InputStream jsonFilePath = Person.class.getResourceAsStream("zamowienie 16:58:25.json");
-
-
-
-            try {
-                InputStream inputStream = new FileInputStream(new File("zamowienie 16:58:25.json"));
-                Person person = new ObjectMapper().readValue(inputStream, Person.class);
-                return person;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
 
 
 
