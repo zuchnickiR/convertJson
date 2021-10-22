@@ -75,7 +75,6 @@ b) dodaje do tego obiektu klucz i wartość
 
     public void createJsonFromPerson(Person per) {
 
-
         String projectDirectory = pathsClasses.getProjectDirectory();
 
         JSONObject jsonObject = new JSONObject();
@@ -86,7 +85,6 @@ b) dodaje do tego obiektu klucz i wartość
         //nazwa dla obiektu
         String typeName = jsonObject.getClass().getSimpleName();
         System.out.println("Type : " + typeName);
-
 
         System.out.println("--------------------------------\n" +
                 "Do you want to save file?\n" +
@@ -130,23 +128,21 @@ b) dodaje do tego obiektu klucz i wartość
 
 
 
-
-//    public void createJsonFromObjectUsingObjectMapper(Person person) {
-//        ObjectMapper objectMapper = new ObjectMapper();
-//
-//        try {
-//            objectMapper.writeValue(
-//                    new FileWriter(getCurrentDate() + " " + getCurrentTime() + " .json"), person);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+//DOBRA METODA ALE NA JAWNEJ KLASIE
+    public void createJsonFromObjectUsingObjectMapper(Person person) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            objectMapper.writeValue(
+                    new FileWriter(getCurrentDate() + " " + getCurrentTime() + " .json"), person);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     //https://stackoverflow.com/questions/15786129/converting-java-objects-to-json-with-jackson
+    //DOBRA METODA I PRZESYŁAMY DO NIEJ JAKI OBIEKT CHCEMY
     public void createJsonFromObjectUsingObjectMapper111(Object object) {
-
         ObjectMapper objectMapper = new ObjectMapper();
-
         try {
             String valueAsString = objectMapper.writeValueAsString(object);
             objectMapper.writeValue(
@@ -155,11 +151,6 @@ b) dodaje do tego obiektu klucz i wartość
             e.printStackTrace();
         }
     }
-
-
-
-
-
 
     public JSONObject createJsonUsingGet(Person person) {
         JSONObject jsonPerson = new JSONObject();

@@ -13,7 +13,56 @@
         <maven.compiler.target>16</maven.compiler.target>
     </properties>
 
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
+<!--To jest depenndencja, której używam, by zmapować object to Json z wykorzystaniem: JSON Object:-->
+<!-- public void createJsonFromPerson(Person per) {
+
+
+        String projectDirectory = pathsClasses.getProjectDirectory();
+
+        JSONObject jsonObject = new JSONObject();
+
+        //nazwa dla Zamówienia
+        String nazwaZamowienia = "zamowienie " + getCurrentTime();
+
+        //nazwa dla obiektu
+        String typeName = jsonObject.getClass().getSimpleName();
+        System.out.println("Type : " + typeName);
+
+
+        System.out.println("\n" +
+                "Do you want to save file?\n" +
+                "Name: " + nazwaZamowienia +"\n" +
+                "Type: " + typeName +"\n" +
+                "\n" +
+                "a) If yes enter 'y', then press enter\n" +
+                "b) If no enter any keyboard key, then press enter");
+
+        Scanner scanner = new Scanner(System.in);
+        String resultYn = scanner.nextLine();
+
+        if(resultYn.equals("Y") || resultYn.equals("y")) {
+
+            jsonObject.put("name", per.getName());  //Uwaga: klucze  MUSZĄ mieć taka samą nazwę co pola w Klasie Person, inaczej powstanie błąd!
+            jsonObject.put("age", per.getAge());    //Uwaga: klucze  MUSZĄ mieć taka samą nazwę co pola w Klasie Person, inaczej powstanie błąd!
+            try {
+                FileWriter fileWriter = new FileWriter(projectDirectory + nazwaZamowienia + ".json");
+                fileWriter.write(jsonObject.toString());
+                fileWriter.flush();
+                fileWriter.close();
+
+                System.out.println("File: '" + nazwaZamowienia + "' was successfully saved!\n" +
+                        "in path: " + projectDirectory);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+
+            System.out.println("Saving file aborted.");
+        }
+    }    -->
     <dependencies>
         <!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
         <dependency>
@@ -21,6 +70,8 @@
             <artifactId>json-simple</artifactId>
             <version>1.1.1</version>
         </dependency>
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
 
 <!-- Dodaję te dependencję, by móc zmapować Json do Obiektu Java -->
 <!--        <dependency>-->
@@ -38,12 +89,27 @@
 <!--        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind do readValue();  -->
+
+
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--  To jest dependncja do wykorzystania metody: z wykorzystaniem ObejctMapper:
+       public void createJsonFromObjectUsingObjectMapper111(Object object) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            String valueAsString = objectMapper.writeValueAsString(object);
+            objectMapper.writeValue(
+                    new FileWriter(getCurrentDate() + " " + getCurrentTime() + " .json"), valueAsString);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+      -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.12.4</version>
         </dependency>
-
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
     </dependencies>
 
